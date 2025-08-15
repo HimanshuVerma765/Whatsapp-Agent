@@ -1,71 +1,79 @@
-🤖 My First Self-Replying WhatsApp AI Agent
-Description
-This project is a self-replying WhatsApp bot powered by an AI agent. It uses a combination of Docker, n8n, and a Node.js backend to handle incoming WhatsApp messages and generate intelligent responses. This guide will walk you through the essential steps to get your very own AI agent up and running!
+# 🤖 My First Self-Replying WhatsApp AI Agent
 
-Prerequisites
-Before you begin, make sure you have the following installed on your machine:
+## Description
 
-Docker
+This project is a self-replying WhatsApp bot powered by an AI agent. It leverages **Docker**, **n8n**, and a **Node.js backend** to handle incoming WhatsApp messages and generate intelligent responses.
 
-Node.js and npm
+## Prerequisites
 
-Visual Studio Code (or your preferred code editor)
+Before you begin, ensure you have the following installed:
 
-1️⃣ Run n8n with Docker
-Start by pulling the n8n Docker image and running it. This will set up the environment for your workflow.
+- **Docker** - Container platform
+- **Node.js** and **npm** - JavaScript runtime and package manager
+- **Visual Studio Code** (or preferred code editor)
 
+## Installation & Setup
+
+### 1️⃣ Run n8n with Docker
+
+First, pull the n8n Docker image:
+
+```bash
 docker pull n8nio/n8n
+```
 
-Once the image is pulled, run the container.
+Then run the container:
 
-# For macOS and Linux
-docker run -it --rm \
-  -p 5678:5678 \
-  -v ~/.n8n:/home/node/.n8n \
-  n8nio/n8n
+**For Windows:**
 
-# For Windows (using Command Prompt)
+```cmd
 docker run -it --rm ^
   -p 5678:5678 ^
   -v %USERPROFILE%\.n8n:/home/node/.n8n ^
   n8nio/n8n
+```
 
-You can now access n8n in your browser at: 👉 http://localhost:5678
+Access n8n dashboard at: [http://localhost:5678](http://localhost:5678)
 
-2️⃣ Install Required Packages
-Navigate to your project directory in the terminal and install the Node.js packages needed for your bot's code.
+### 2️⃣ Install Dependencies
 
+```bash
 npm install express venom-bot axios
+```
 
-3️⃣ Set Up Your API Key
-To enable your AI agent to communicate with the model, you'll need an API key.
+### 3️⃣ API Configuration
 
-Set up an account on Openrouter.
+1. Create an account on [OpenRouter](https://openrouter.ai)
+2. Configure your API key in n8n credentials
+3. Verify API access
 
-Add your API key to your n8n credentials.
+### 4️⃣ Workflow Setup
 
-4️⃣ Import Your Agent Workflow
-Import your agent's workflow by uploading the provided .json file directly into your n8n dashboard. This will define the logic for how your agent responds to messages.
+1. Open n8n dashboard
+2. Import the provided `.json` workflow file
+3. Configure webhook endpoints
 
-5️⃣ Run and Test Your Bot
-Open your bot code in VS Code.
+### 5️⃣ Launch & Testing
 
-In n8n, Enable workflow testing.
+1. Start the bot:
 
-Start your bot by running the following command in your terminal:
-
+```bash
 node bot.js
+```
 
-Trigger a test interaction using curl from a new terminal window to simulate a message:
+2. Test with a sample request:
 
-curl -X POST http://localhost:3000/simulate-self \
-  -H "Content-Type: application/json" \
-  -d '{"body": "Hello there!", "from": "your-phone-number@c.us"}'
+```bash
+curl -X POST http://localhost:3000/simulate-self ^
+  -H "Content-Type: application/json" ^
+  -d "{\"body\": \"Hello there!\", \"from\": \"your-phone-number@c.us\"}"
+```
 
-And you're all set! Your first AI agent is now ready to interact. Congratulations! 🎉
+## Quick Start Guide
 
-Contributing
-We welcome contributions! If you have suggestions or find any issues, please feel free to open an issue or submit a pull request.
-
-License
-This project is licensed under the MIT License.
+1. Install prerequisites
+2. Run n8n container
+3. Set up API credentials
+4. Import workflow
+5. Launch bot
+6. Send test message
